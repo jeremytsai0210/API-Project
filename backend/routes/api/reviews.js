@@ -64,7 +64,7 @@ router.get("/current", requireAuth, async (req, res) => {
   try {
     const currentUser = parseInt(req.user.id);
 
-    console.log(currentUser);
+    // console.log(currentUser);
 
     // Fetch all reviews for the current user
     const reviews = await Review.findAll({
