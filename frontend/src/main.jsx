@@ -29,6 +29,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <ModalProvider>
       <Provider store={store}>
         <App />
+        {console.log("INSIDE REACTDOM")}
         <Modal />
       </Provider>
     </ModalProvider>
