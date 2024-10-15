@@ -13,6 +13,25 @@ function LoginFormModal() {
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
 
+  const handleDemoLogin = (e) => {
+    e.preventDefault();
+    setErrors({});
+
+    const demoCredentials = {
+      credential: 'Demo-lition',
+      password: 'password'
+    }
+
+    return dispatch(sessionActions.login(demoCredentials))
+      .then(closeModal)
+      .catch(async (res) => {
+        const data = await res.json();
+        if(data?.errors) {
+          setErrors(data.errors);
+        }
+      });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors({});
@@ -49,8 +68,14 @@ function LoginFormModal() {
           />
         </label>
         {errors.credential && <p>{errors.credential}</p>}
-        <button type="submit">Log In</button>
+        <button type="submit" disabled={credential.length < 4 || password.length < 6}>Log In</button>
       </form>
+
+      <div className="demo-link-container">
+        <button type="button" className="demo-link" onClick={handleDemoLogin}>
+          Log in as Demo User
+        </button>
+      </div>
     </>
   );
 }
