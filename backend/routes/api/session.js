@@ -3,7 +3,7 @@ const express = require("express");
 const { Op, Sequelize } = require("sequelize");
 const bcrypt = require("bcryptjs");
 const { setTokenCookie, restoreUser } = require("../../utils/auth");
-const { User, Spot, Review, SpotImage } = require("../../db/models");
+const { User } = require("../../db/models");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 const router = express.Router();
@@ -67,10 +67,10 @@ router.get("/", restoreUser, async (req, res) => {
     include: [
       {
         model: Review, // Assuming you have a Review model for ratings
-        attributes: [[Sequelize.fn("AVG", Sequelize.col("stars")), "avgRating"]],
+        attributes: [[Sequelize.fn("AVG", Sequelize.col("rating")), "avgRating"]],
       },
       {
-        model: SpotImage, // Assuming you have an Image model for preview images
+        model: Image, // Assuming you have an Image model for preview images
         attributes: ["url"],
         where: { preview: true },
         required: false, // Include even if there is no preview image
@@ -96,7 +96,7 @@ router.get("/", restoreUser, async (req, res) => {
       createdAt: spot.createdAt,
       updatedAt: spot.updatedAt,
       avgRating: spot.Reviews[0]?.avgRating || null, // Use the aggregated average rating
-      previewImage: spot.SpotImages[0]?.url || null, // Use the first preview image if available
+      previewImage: spot.Images[0]?.url || null, // Use the first preview image if available
     };
   });
 
