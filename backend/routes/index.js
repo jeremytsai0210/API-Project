@@ -20,7 +20,6 @@ if (process.env.NODE_ENV === 'production') {
     );
   });
 
-  console.log("HELLO?");
   // Serve the static assets in the frontend's build folder
   router.use(express.static(path.resolve("../frontend/dist")));
 

@@ -51,6 +51,7 @@ const validateLogin = [
 // });
 
 router.get("/", restoreUser, async (req, res) => {
+  console.log("Inside backend/routes/api/session");
   if (!req.user) {
     return res.status(200).json({ user: null });
   }
