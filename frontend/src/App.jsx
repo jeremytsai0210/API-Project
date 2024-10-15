@@ -23,7 +23,7 @@ function Layout() {
     </>
   );
 }
-console.log("Frontend App.jsx");
+
 const router = createBrowserRouter([
   {
     element: <Layout />,
