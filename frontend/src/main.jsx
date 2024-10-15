@@ -22,6 +22,8 @@ if (import.meta.env.MODE !== 'production') {
 //   window.store = store;
 // }
 
+console.log("Hello from frontend main file");
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ModalProvider>
