@@ -2,6 +2,11 @@
 
 import Cookies from 'js-cookie';
 
+// call this to get the "XSRF-TOKEN" cookie, should only be used in development
+export function restoreCSRF() {
+    return csrfFetch('/api/csrf/restore');
+}
+
 export async function csrfFetch(url, options = {}) {
   // set options.method to 'GET' if there is no method
   options.method = options.method || 'GET';
@@ -26,9 +31,4 @@ export async function csrfFetch(url, options = {}) {
   // if the response status code is under 400, then return the response to the
   // next promise chain
   return res;
-}
-
-// call this to get the "XSRF-TOKEN" cookie, should only be used ind evelopment
-export function restoreCSRF() {
-    return csrfFetch('/api/csrf/restore');
 }
