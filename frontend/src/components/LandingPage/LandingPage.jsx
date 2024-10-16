@@ -25,13 +25,16 @@ function LandingPage() {
                         title={spot.name}
                     >
                         <img 
-                            src={spot.previewImage}
+                            src={spot.previewImage} /* Not sure how to get image dynamically */
                             alt={spot.name}
                             className="spot-thumbnail"
                         />
                         <div className="spot-details">
-                            <div className="spot-location">
+                            <div className="city-state">
                                 {spot.city}, {spot.state}
+                            </div>
+                            <div className="tooltip" data-tooltip={spot.name}>
+                                <h3>{spot.name}</h3>
                             </div>
                             <div className="spot-rating">
 
