@@ -23,7 +23,7 @@ module.exports = {
       [
         {
           spotId: 1,
-          url: "Image.png",
+          url: "/images/SanFrancisco/1.png",
           preview: true,
         },
         {
