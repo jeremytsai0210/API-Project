@@ -29,7 +29,7 @@ input {
 }
 
 /* Style the error messages */
-p {
+.errors {
   color: red;
   font-size: 12px;
   margin-top: -10px;
