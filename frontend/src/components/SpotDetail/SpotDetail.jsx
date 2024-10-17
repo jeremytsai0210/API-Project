@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import * as spotActions from '../../store/spots';
+import * as reviewActions from '../../store/reviews';
 import './SpotDetail.css';
 
 const SpotDetail = () => {
@@ -32,7 +33,6 @@ const SpotDetail = () => {
     return (
         <>
             <div className="spot-details"> 
-                {/* Add your component content here */}
                 <h1 className="spot-name">{spot.name}</h1>
                 <p className="spot-location">Location: {spot.city}, {spot.state}, {spot.country}</p>
                 <div className="images">
@@ -54,18 +54,17 @@ const SpotDetail = () => {
                     <div>
                         <div className="price-and-review">
                             <p className="spot-price">${spot.price} night</p>
-                            <span className="spot-review">Star AvgRating numReviews</span>
+                            <span className="spot-review">
+
+                            </span>
                         </div>
                         <button onClick={() => alert("Feature coming soon")}>Reserve</button>
                     </div>
                 </div>
             </div>
-            <div className="review-details">
-                Reviews go here...
-            </div>
-        </>
-        
 
+            {/* REVIEWS */}
+        </>
     );
 };
 

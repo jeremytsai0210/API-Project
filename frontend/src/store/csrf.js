@@ -15,6 +15,11 @@ export async function csrfFetch(url, options = {}) {
     options.headers['Content-Type'] =
       options.headers['Content-Type'] || 'application/json';
     options.headers['XSRF-Token'] = Cookies.get('XSRF-TOKEN');
+    
+    // test fix for csrf
+    if (options.body && typeof options.body !== 'string') {
+      options.body = JSON.stringify(options.body);
+    }
   }
   // call the default window's fetch with the url and the options passed in
   const res = await window.fetch(url, options);
