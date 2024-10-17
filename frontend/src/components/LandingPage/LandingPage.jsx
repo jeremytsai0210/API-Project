@@ -37,7 +37,7 @@ function LandingPage() {
                                 <h3>{spot.name}</h3>
                             </div>
                             <div className="spot-rating">
-
+                                <div className="stars">{spot.rating || "NEW"}</div>
                             </div>
                             <div className="spot-price">
                                 ${spot.price} / night
