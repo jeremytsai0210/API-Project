@@ -60,6 +60,17 @@ export const getAllSpots = () => async dispatch => {
     }
 };
 
+// GET a single Spot
+export const fetchSpotDetails = (spotId) => async dispatch => {
+    // console.log('Fetch - GET single Spot');
+    const response = await fetch(`/api/spots/${spotId}`);
+
+    if (response.ok) {
+        const spot = await response.json();
+        dispatch(add(spot));
+    }
+};
+
 // CREATE a new Spot
 export const addSpot = (spotData) => async (dispatch, getState) => {
     // console.log('Fetch - POST new Spot');

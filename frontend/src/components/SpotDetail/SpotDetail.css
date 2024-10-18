@@ -15,6 +15,7 @@
     gap: 10px;
     max-width: 1000px;
     margin: 10px auto;
+    border: black 1px solid;
 }
 
 .large-image {
@@ -33,16 +34,19 @@
 .spot-information {
     display: grid;
     grid-template-columns: 2fr 1fr;
+    border: red 4px solid;
 }
 
 .spot-host {
     margin: 0;
+    border: green 4px solid;
 }
 
 .price-and-review {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    border: black 4px solid;
 }
 .review-details {
     font-family: Arial, Helvetica, sans-serif;
@@ -51,4 +55,5 @@
     max-width: 1000px;
     margin: 10px auto;
     padding: 0 20px;
+    border: black 1px solid;
 }
