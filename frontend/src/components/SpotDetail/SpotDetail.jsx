@@ -1,20 +1,36 @@
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 // import * as spotActions from '../../store/spots';
-// import * as reviewActions from '../../store/reviews';
+import * as reviewActions from '../../store/reviews';
+import OpenModalButton from '../OpenModalButton';
+import ReviewFormModal from '../ReviewFormModal';
+import { useModal } from '../../context/Modal';
 import './SpotDetail.css';
 
 const SpotDetail = () => {
     // const dispatch = useDispatch();
     const { spotId } = useParams();
-
+    const dispatch = useDispatch();
     const [spot, setSpot] = useState(null);
     const [reviews, setReviews] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const user = useSelector((state) => state.session.user);
     // console.log(user);
+
+    const { openModal, closeModal } = useModal();
+
+    const handleReviewSubmit = (review) => {
+        const reviewData = {
+            review,
+            userId: user.id
+        };
+
+        dispatch(reviewActions.createReview(spotId, reviewData));
+        setIsModalOpen(false);
+    }
 
     useEffect(() => {
         const fetchSpotDetails = async () => {
@@ -22,12 +38,12 @@ const SpotDetail = () => {
                 const spotResponse = await fetch(`/api/spots/${spotId}`);
                 const spotData = await spotResponse.json();
                 setSpot(spotData);
-                console.log(spotData);
+                // console.log(spotData);
     
                 const reviewResponse = await fetch(`/api/spots/${spotId}/reviews`);
                 const reviewData = await reviewResponse.json();
                 setReviews(reviewData.Reviews);
-                console.log(reviewData);
+                // console.log(reviewData);
             } catch (error) {
                 console.error(error);
             } finally {
@@ -135,6 +151,20 @@ const SpotDetail = () => {
                         </>
                     )}
                 </span>
+
+                <div className="review-modal">
+                    {user && !isOwner && (
+                        <div>
+                            <OpenModalButton
+                                onButtonClick={() => setIsModalOpen(true)}
+                                buttonText={"Leave a Review"}
+                                modalComponent={<ReviewFormModal />}
+                                className="review-button"
+                            />
+                        </div>
+                    )}
+                </div>
+
                 {reviews.length > 0 ? (
                     reviews.map((review) => (
                         <div key={review.id} className="review">
