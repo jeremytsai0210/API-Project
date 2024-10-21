@@ -3,10 +3,12 @@
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { FaUserCircle } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
 import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
+// import ManageSpots from '../ManageSpots';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -53,6 +55,9 @@ function ProfileButton({ user }) {
             <li>Hello, {user.firstName}</li>
             {/* <li>{user.firstName} {user.lastName}</li> */}
             <li>{user.email}</li>
+            <li>
+              <Link to="/spots/current">Manage Spots</Link>
+            </li>
             <li>
               <button onClick={logout}>Log Out</button>
             </li>
