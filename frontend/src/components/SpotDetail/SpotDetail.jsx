@@ -157,8 +157,8 @@ const SpotDetail = () => {
                         <div>
                             <OpenModalButton
                                 onButtonClick={() => setIsModalOpen(true)}
-                                buttonText={"Leave a Review"}
-                                modalComponent={<ReviewFormModal />}
+                                buttonText={"Post Your Review"}
+                                modalComponent={<ReviewFormModal spotId={spotId}/>}
                                 className="review-button"
                             />
                         </div>

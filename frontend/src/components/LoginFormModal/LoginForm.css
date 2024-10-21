@@ -4,14 +4,13 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 400px; /* Set a max width for the form */
-  margin: 0 auto; /* Center the form on the page */
+  max-width: 400px;
+  margin: 0 auto;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
 }
 
-/* Style the labels and inputs */
 label {
   display: flex;
   flex-direction: column;
@@ -28,7 +27,6 @@ input {
   box-sizing: border-box;
 }
 
-/* Style the error messages */
 .errors {
   color: red;
   font-size: 12px;
@@ -36,7 +34,6 @@ input {
   margin-bottom: 10px;
 }
 
-/* Style the button */
 button {
   padding: 10px 20px;
   background-color: #007bff;
@@ -45,7 +42,7 @@ button {
   border-radius: 4px;
   cursor: pointer;
   width: fit-content;
-  align-self: center; /* Center the button */
+  align-self: center;
 }
 
 button:hover {

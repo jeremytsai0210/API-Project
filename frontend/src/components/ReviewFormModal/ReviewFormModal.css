@@ -1,43 +1,41 @@
-/* TODO: Review Form Modal CSS *//* TODO: Make the Login page look better */
+/* TODO: Review Form Modal CSS */
 
 form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 400px; /* Set a max width for the form */
-    margin: 0 auto; /* Center the form on the page */
+    max-width: 400px;
+    margin: 0 auto;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 8px;
-  }
-  
-  /* Style the labels and inputs */
-  label {
+}
+
+label {
     display: flex;
     flex-direction: column;
     margin-bottom: 15px;
     width: 100%;
-  }
-  
-  input {
+}
+
+input {
     padding: 8px;
     margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
     width: 100%;
     box-sizing: border-box;
-  }
-  
-  /* Style the error messages */
-  .errors {
+}
+
+
+.errors {
     color: red;
     font-size: 12px;
     margin-top: -10px;
     margin-bottom: 10px;
-  }
-  
-  /* Style the button */
-  button {
+}
+
+button {
     padding: 10px 20px;
     background-color: #007bff;
     color: white;
@@ -45,16 +43,16 @@ form {
     border-radius: 4px;
     cursor: pointer;
     width: fit-content;
-    align-self: center; /* Center the button */
-  }
-  
-  button:hover {
+    align-self: center;
+}
+
+button:hover {
     background-color: #0056b3;
-  }
-  
-  .demo-link-container {
+}
+
+.demo-link-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 10px;
-  }
+}

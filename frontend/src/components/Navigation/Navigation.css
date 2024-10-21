@@ -1,18 +1,17 @@
 /* Style the navigation bar */
 ul {
     display: flex;
-    justify-content: space-between; /* Space items to opposite ends */
-    align-items: center; /* Center items vertically */
-    list-style: none; /* Remove default list style */
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
     padding: 10px 20px;
-    background-color: #f8f9fa; /* Light gray background */
+    background-color: #f8f9fa;
     border-bottom: 1px solid #ccc;
     margin: 0;
 }
 
-/* Style the individual navigation links */
 li {
-    margin: 0 15px; /* Add some spacing between nav items */
+    margin: 0 15px;
 }
 
 a {
@@ -24,17 +23,15 @@ a {
 }
 
 a:hover {
-    background-color: #e2e6ea; /* Light background on hover */
+    background-color: #e2e6ea;
     color: #0056b3;
 }
 
-/* Style for the container holding session links */
 .session-links {
     display: flex;
-    gap: 15px; /* Space between login/signup or profile links */
+    gap: 15px;
 }
 
-/* Style the ProfileButton component (assuming it's rendered as a button) */
 button {
     background-color: #007bff;
     color: white;
@@ -91,7 +88,7 @@ button:hover {
     margin: 0;
     font-weight: bold;
     text-decoration: none;
-    margin-right: auto; /* Push the link to the right */
+    margin-right: auto;
 }
 
 .create-spot-link:hover {
