@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink, useParams, useNavigate } from 'react-router-dom';
 import * as spotActions from '../../store/spots';
 import './CreateSpot.css';
 
@@ -30,22 +30,25 @@ function validateForm(formData) {
     if(!formData.description) {
         errors.description = "Please enter a description for your spot";
     }
-    if(!formData.latitude) {
-        errors.latitude = "Please enter a latitude for your spot";
-    }
-    if(!formData.longitude) {
-        errors.longitude = "Please enter a longitude for your spot";
-    }
-    if(!formData.images.length < 1) {
-        errors.images = "Please enter at least one image for your spot";
-    }
+    // if(!formData.latitude) {
+    //     errors.latitude = "Please enter a latitude for your spot";
+    // }
+    // if(!formData.longitude) {
+    //     errors.longitude = "Please enter a longitude for your spot";
+    // }
+    // if(!formData.images.length < 1) {
+    //     errors.images = "Please enter at least one image for your spot";
+    // }
 
     return errors;
 }
 
 const CreateSpot = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const spotId = useParams();
 
+    // Form Data
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [address, setAddress] = useState('');
@@ -58,6 +61,7 @@ const CreateSpot = () => {
     const [latitude, setLatitude] = useState('');
     const [longitude, setLongitude] = useState('');
     const [newSpotId, setNewSpotId] = useState(null);
+    const [isEdit] = useState(!spotId);
 
     const [errors, setErrors] = useState({});
 
@@ -66,6 +70,15 @@ const CreateSpot = () => {
     //     newImageUrls[index] = value;
     //     setImageUrls(newImageUrls);
     // };
+
+    // console.log("SPOT ID :", spotId);
+    // console.log(isEdit);
+
+    // useEffect(() => {
+    //     if(spotId && isEdit) {
+    //         dispatch(spotActions.fetchSpotDetails(spotId));
+    //     }
+    // }, [dispatch, spotId, isEdit])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -88,20 +101,19 @@ const CreateSpot = () => {
         const validationErrors = validateForm(spotData);
         if(Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors);
+            console.log("Validation Errors: ", validationErrors);
             return;
         }
 
-        try {
-            const newSpot = await dispatch(spotActions.addSpot(spotData));
+        const newSpot = dispatch(spotActions.addSpot(spotData));
+        dispatch(spotActions.fetchSpotDetails(newSpot.id));
+        navigate(`/spots/${newSpot.id}`);
 
-            if (newSpot) {
-                alert("Spot created successfully!");
-                setNewSpotId(newSpot.id);
-            } else {
-                alert("Failed to create spot. Please try again.");
-            }
-        } catch (error) {
-            console.error("Error creating spot: ", error);
+        if (newSpot) {
+            alert("Spot created successfully!");
+            setNewSpotId(newSpot.id);
+        } else {
+            alert("Failed to create spot. Please try again.");
         }
     };
 
@@ -253,20 +265,18 @@ const CreateSpot = () => {
                         />
                     </label>
                 </div>
-                {/* <div className="images">
+                <div className="images">
                     <label>
-                        {imageUrls.map((url, index) => (
-                            <input
-                                key={index}
-                                type="text"
-                                value={url}
-                                onChange={(e) => handleImageChange(index, e.target.value)}
-                                className={errors.images ? "error" : ""}
-                                placeholder="Image URL"
-                            />
-                        ))}
+                        <input
+                            // key={index}
+                            type="text"
+                            // value={url}
+                            // onChange={(e) => handleImageChange(0, e.target.value)}
+                            className={errors.images ? "error" : ""}
+                            placeholder="Image URL"
+                        />
                     </label>
-                </div> */}
+                </div>
                 <button type="submit">Create Spot</button>
             </form>
             {newSpotId && (
