@@ -25,7 +25,9 @@ function LandingPage() {
                         title={spot.name}
                     >
                         <img 
-                            src={spot.previewImage} /* Not sure how to get image dynamically */
+                            // external url for image for now
+                            src={"https://images.unsplash.com/photo-1567371891232-7265b51bab42?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"}
+                            // src={spot.previewImage} /* Not sure how to get image dynamically */
                             alt={spot.name}
                             className="spot-thumbnail"
                         />
@@ -34,7 +36,7 @@ function LandingPage() {
                                 {spot.city}, {spot.state}
                             </div>
                             <div className="tooltip" data-tooltip={spot.name}>
-                                <h3>{spot.name}</h3>
+                                <h6>{spot.name}</h6>
                             </div>
                             <div className="spot-rating">
                                 <div className="stars">{spot.rating || "NEW"}</div>
