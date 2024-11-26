@@ -104,13 +104,18 @@ const SpotDetail = () => {
                 <p className="spot-location">Location: {spot.city}, {spot.state}, {spot.country}</p>
                 <div className="images">
                     <span className="large-image">
-                        <img src="large-image-url" alt="Large Image" />
+                        <img src="https://images.unsplash.com/photo-1567371891232-7265b51bab42?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Large Image"/>
+                        {/* <img src="large-image-url" alt="Large Image" /> */}
                     </span>
                     <span className="small-images">
-                        <img src="small-image-url-1" alt="Small Image 1" />
+                        <img src="https://images.unsplash.com/photo-1567371891232-7265b51bab42?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Small Image 1" />
+                        <img src="https://images.unsplash.com/photo-1567371891232-7265b51bab42?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Small Image 2" />
+                        <img src="https://images.unsplash.com/photo-1567371891232-7265b51bab42?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Small Image 3" />
+                        <img src="https://images.unsplash.com/photo-1567371891232-7265b51bab42?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Small Image 4" />
+                        {/* <img src="small-image-url-1" alt="Small Image 1" />
                         <img src="small-image-url-2" alt="Small Image 2" />
                         <img src="small-image-url-3" alt="Small Image 3" />
-                        <img src="small-image-url-4" alt="Small Image 4" />
+                        <img src="small-image-url-4" alt="Small Image 4" /> */}
                     </span>
                 </div>
                 <div className="spot-information">

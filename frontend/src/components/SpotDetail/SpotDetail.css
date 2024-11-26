@@ -18,6 +18,12 @@
     border: black 1px solid;
 }
 
+.images img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
 .large-image {
     grid-row: 1 / span2;
     width: 100%;
