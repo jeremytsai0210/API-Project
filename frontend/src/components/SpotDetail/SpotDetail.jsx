@@ -120,24 +120,26 @@ const SpotDetail = () => {
                 </div>
                 <div className="spot-information">
                     <div>
-                        <h3 className="spot-host">Hosted by {spot.Owner.firstName}, {spot.Owner.lastName}</h3>
+                        <h3 className="spot-host">Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</h3>
                         <p className="spot-description">{spot.description}</p>
                     </div>
                     <div>
-                        <div className="price-and-review">
-                            <p className="spot-price">${spot.price.toFixed(2)} night</p>
-                            <span className="spot-review">
-                                <i className="fa fa-star">⭐</i>
-                                {averageRating}
-                                {reviews.length > 0 && (
-                                    <>
-                                        <span> · </span>
-                                        <span>{reviewCount}</span>
-                                    </>
-                                )}
-                            </span>
+                        <div className="price-and-review-box">
+                            <div className="price-and-review">
+                                <p className="spot-price">${spot.price.toFixed(2)} night</p>
+                                <span className="spot-review">
+                                    <i className="fa fa-star">⭐</i>
+                                    {averageRating}
+                                    {reviews.length > 0 && (
+                                        <>
+                                            <span> · </span>
+                                            <span>{reviewCount}</span>
+                                        </>
+                                    )}
+                                </span>
+                            </div>
+                            <button onClick={() => alert("Feature coming soon")}>Reserve</button>
                         </div>
-                        <button onClick={() => alert("Feature coming soon")}>Reserve</button>
                     </div>
                 </div>
             </div>
