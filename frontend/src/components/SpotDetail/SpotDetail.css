@@ -6,6 +6,8 @@
     max-width: 1000px;
     margin: 10px auto;
     padding: 0 20px;
+    background-color: lightsteelblue;
+    border: 1px solid black;
 }
 
 .images {
@@ -50,18 +52,21 @@
 .spot-information {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    /* border: red 4px solid; */
 }
 
 .spot-host {
     margin: 0;
-    /* border: green 4px solid; */
 }
 
 .price-and-review-box {
     display: flex;
     flex-direction: column;
     border: black 4px solid;
+    border-radius: 8px;
+    padding: 10px;
+    gap: 10px;
+    background-color: aliceblue;
+    margin: 10px auto;
 }
 
 .price-and-review {
@@ -90,5 +95,6 @@ button {
     max-width: 1000px;
     margin: 10px auto;
     padding: 0 20px;
-    border: black 1px solid;
+    border: royalblue 2px solid;
+    border-radius: 10px;
 }

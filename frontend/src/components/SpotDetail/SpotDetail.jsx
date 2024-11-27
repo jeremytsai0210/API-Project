@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-// import * as spotActions from '../../store/spots';
+import * as spotActions from '../../store/spots';
 import * as reviewActions from '../../store/reviews';
 import OpenModalButton from '../OpenModalButton';
 import ReviewFormModal from '../ReviewFormModal';
@@ -38,7 +38,7 @@ const SpotDetail = () => {
                 const spotResponse = await fetch(`/api/spots/${spotId}`);
                 const spotData = await spotResponse.json();
                 setSpot(spotData);
-                // console.log(spotData);
+                console.log(spotData);
     
                 const reviewResponse = await fetch(`/api/spots/${spotId}/reviews`);
                 const reviewData = await reviewResponse.json();
@@ -53,27 +53,6 @@ const SpotDetail = () => {
 
         fetchSpotDetails();
     }, [spotId]);
-    
-    // const spot = useSelector((state) => state.spots[spotId]);
-
-    // console.log('\n');
-    // console.log("TESTING-TESTING-TESTING-TESTING");
-    // console.log('\n');
-
-    // const reviews = useSelector((state) => state.reviews[spotId] || []);
-    // const user = useSelector((state) => state.session.user);
-
-    // const [loading, setLoading] = useState(true);
-    
-    // console.log('\n');
-    // console.log(spot);
-    // console.log(reviews);
-    // console.log('\n');
-
-    // useEffect(() => {
-    //     dispatch(spotActions.fetchSpotDetails(spotId));
-    //     dispatch(reviewActions.fetchReviews(spotId));
-    // }, [dispatch, spotId]);
 
     if(loading) {
         return <div>Loading...</div>
