@@ -25,25 +25,32 @@ const removeReview = (reviewId) => ({
 // Thunks
 export const fetchReviews = (spotId) => async dispatch => {
     const response = await csrfFetch(`/api/spots/${spotId}/reviews`);
+
     if (response.ok) {
         const reviews = await response.json();
+        console.log('\n');
+        console.log(reviews);
+        console.log('\n');
         dispatch(loadReviews(spotId, reviews));
     }
 };
 
 export const createReview = (spotId, review) => async dispatch => {
-    const response = await csrfFetch(`/api/${spotId}/reviews`, {
+    const response = await csrfFetch(`/api/spots/${spotId}/reviews`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(review),
     });
+
     if (response.ok) {
         const newReview = await response.json();
         dispatch(addReview(newReview));
         dispatch(fetchReviews(spotId));
         return newReview;
+    } else {
+        console.error("Failed to submit review: ", response);
     }
 };
 
@@ -51,8 +58,11 @@ export const deleteReview = ( reviewId) => async dispatch => {
     const response = await csrfFetch(`/api/reviews/${reviewId}`, {
         method: 'DELETE',
     });
+
     if (response.ok) {
         dispatch(removeReview(reviewId));
+    } else {
+        console.error("Failed to delete review: ", response);
     }
 };
 
@@ -62,21 +72,18 @@ const initialState = {};
 const reviewsReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_REVIEWS: {
-            const loadedState = {};
-            action.reviews.forEach((review) => {
-                loadedState[review.id] = review;
-            });
-            return loadedState;
+            return {...state, [action.reviews.spotId]: action.reviews };
+            // const loadedState = {};
+            // action.reviews.forEach((review) => {
+            //     loadedState[review.id] = review;
+            // });
+            // return loadedState;
         }
         case ADD_REVIEW:
-            return {
-                ...state,
-                [action.review.id]: action.review,
-            };
+            return {...state, [action.spotId]: [...state(state[action.spotId] || []), action.review]};
         case REMOVE_REVIEW: {
-            const updatedState = { ...state };
-            delete updatedState[action.reviewId];
-            return updatedState;
+            const updatedState = state[action.spotId]?.filter(review => review.id !== action.reviewId) || [];
+            return {...state, [action.spotId]: updatedState};
         }
         default:
             return state;

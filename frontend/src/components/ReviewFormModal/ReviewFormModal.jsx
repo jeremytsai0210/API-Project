@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import * as reviewActions from "../../store/reviews";
+import { FaStar } from "react-icons/fa6";
 import './ReviewFormModal.css';
 
 function ReviewFormModal({ spotId }) {
@@ -9,8 +10,31 @@ function ReviewFormModal({ spotId }) {
     const [review, setReview] = useState("");
     const [stars, setStars] = useState(0);
     const [errors, setErrors] = useState({});
+    const [activeRating, setActiveRating] = useState(rating);
 
     const { closeModal } = useModal();
+
+    useEffect(() => {
+        setActiveRating(rating);
+    }, [rating]);
+
+    const handleMouseEnter = (index) => {
+        if (!disabled) {
+            setActiveRating(index);
+        }
+    };
+
+    const handleMouseLeave = () => {
+        if (!disabled) {
+            setActiveRating(rating);
+        }
+    }
+
+    const handleClick = (index) => {
+        if (!disabled && onChange) {
+            onChange(index);
+        }
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -49,6 +73,19 @@ function ReviewFormModal({ spotId }) {
                         value={stars}
                         onChange={(e) => setStars(e.target.value)}
                     />
+                    <div className="rating-input">
+                        {[1, 2, 3, 4, 5].map((index) => (
+                            <div
+                                key={index}
+                                className={index <= activeRating ? 'filled' : 'empty'}
+                                onMouseEnter={() => handleMouseEnter(index)}
+                                onMouseLeave={handleMouseLeave}
+                                onClick={() => handleClick(index)}
+                            >
+                                <FaStar />
+                            </div>
+                        ))}
+                    </div>
                     <button
                         className="submit-button"
                         type="submit"

@@ -16,11 +16,17 @@ const SpotDetail = () => {
     const [reviews, setReviews] = useState([]);
     const [loading, setLoading] = useState(true);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [hasReviewed, setHasReviewed] = useState(false);
+    const [rating, setRating] = useState(null);
 
     const user = useSelector((state) => state.session.user);
     // console.log(user);
 
     const { openModal, closeModal } = useModal();
+
+    const onChange = (newRating) => {
+        setRating(newRating);
+    }
 
     const handleReviewSubmit = (review) => {
         const reviewData = {
@@ -28,22 +34,26 @@ const SpotDetail = () => {
             userId: user.id
         };
 
-        dispatch(reviewActions.createReview(spotId, reviewData));
+        const newReview = dispatch(reviewActions.createReview(spotId, reviewData));
         setIsModalOpen(false);
     }
 
+    // Fetch spot details
     useEffect(() => {
         const fetchSpotDetails = async () => {
             try {
                 const spotResponse = await fetch(`/api/spots/${spotId}`);
                 const spotData = await spotResponse.json();
                 setSpot(spotData);
-                console.log(spotData);
+                // console.log(spotData);
     
                 const reviewResponse = await fetch(`/api/spots/${spotId}/reviews`);
                 const reviewData = await reviewResponse.json();
                 setReviews(reviewData.Reviews);
                 // console.log(reviewData);
+
+                const userReview = reviewData.Reviews.find((review) => review.User.id === user.id);
+                setHasReviewed(userReview);
             } catch (error) {
                 console.error(error);
             } finally {
@@ -52,12 +62,14 @@ const SpotDetail = () => {
         };
 
         fetchSpotDetails();
-    }, [spotId]);
+    }, [spotId, user]);
 
+    // If the spot is still loading, display a loading message
     if(loading) {
         return <div>Loading...</div>
     }
 
+    // If the spot is not found, display a message
     if(!spot) {
         return <div>Spot Not Found</div>
     }
@@ -139,12 +151,17 @@ const SpotDetail = () => {
                 </span>
 
                 <div className="review-modal">
-                    {user && !isOwner && (
+                    {user && !isOwner && !hasReviewed && (
                         <div>
                             <OpenModalButton
                                 onButtonClick={() => setIsModalOpen(true)}
                                 buttonText={"Post Your Review"}
-                                modalComponent={<ReviewFormModal spotId={spotId}/>}
+                                modalComponent={<ReviewFormModal 
+                                    spotId={spotId}
+                                    disabled={false}
+                                    onChange={onChange}
+                                    rating={rating}
+                                />}
                                 className="review-button"
                             />
                         </div>
