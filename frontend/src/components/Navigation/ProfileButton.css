@@ -1,0 +1,20 @@
+.profile-dropdown {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-dropdown.hidden {
+  display: none;
+}
+
+.spots-link {
+    background-color: transparent;
+    color: #007bff;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    margin: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    margin-right: auto;
+}

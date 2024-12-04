@@ -9,6 +9,7 @@ import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
 // import ManageSpots from '../ManageSpots';
+import './ProfileButton.css';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -52,13 +53,13 @@ function ProfileButton({ user }) {
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>Hello, {user.firstName}</li>
+            <li className="username">Hello, {user.firstName}</li>
             {/* <li>{user.firstName} {user.lastName}</li> */}
-            <li>{user.email}</li>
-            <li>
+            <li className="usermail">{user.email}</li>
+            <li className="spots-link">
               <Link to="/spots/current">Manage Spots</Link>
             </li>
-            <li>
+            <li className="logout-button">
               <button onClick={logout}>Log Out</button>
             </li>
           </>
