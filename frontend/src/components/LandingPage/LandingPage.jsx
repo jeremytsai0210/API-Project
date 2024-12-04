@@ -3,14 +3,21 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getAllSpots } from '../../store/spots';
 import './LandingPage.css';
+import { FaItalic } from 'react-icons/fa';
 
 function LandingPage() {
     const dispatch = useDispatch();
     const state = useSelector((state) => state);
     const spots = useSelector((state) => Object.values(state.spots));
 
+    // Problem is in backend. Fetching the routes does not give me 
+    // avgRating and previewImage. Need to figure out how to fix new
+    // migrations and/or seeding for more data. Also need to check how 
+    // you are getting the data for avgRating and images. Otherwise, hotfix
+    // would be to have to fake some hard-code data on the frontend to make
+    // it 'work' for now.
     console.log(state);
-    
+
     useEffect(() => {
         dispatch(getAllSpots());
     }, [dispatch]);
